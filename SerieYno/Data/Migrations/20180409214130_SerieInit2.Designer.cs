@@ -11,9 +11,10 @@ using System;
 namespace SerieYno.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180409214130_SerieInit2")]
+    partial class SerieInit2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,21 +189,11 @@ namespace SerieYno.Data.Migrations
 
                     b.Property<DateTime?>("DeletedAt");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1024);
-
-                    b.Property<string>("Name_serie")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Photo_serie");
-
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("ID");
 
-                    b.ToTable("SerieModel");
+                    b.ToTable("Serie");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -11,9 +11,10 @@ using System;
 namespace SerieYno.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180409213206_SerieInit")]
+    partial class SerieInit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,32 +178,6 @@ namespace SerieYno.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("SerieYnoModels.Models.SerieModel", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<DateTime?>("DeletedAt");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1024);
-
-                    b.Property<string>("Name_serie")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Photo_serie");
-
-                    b.Property<DateTime>("UpdatedAt");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("SerieModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

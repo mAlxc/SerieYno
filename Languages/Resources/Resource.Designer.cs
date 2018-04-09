@@ -61,6 +61,15 @@ namespace Languages.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à description.
+        /// </summary>
+        public static string description {
+            get {
+                return ResourceManager.GetString("description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Prénom.
         /// </summary>
         public static string firstname {
@@ -75,6 +84,24 @@ namespace Languages.Resources {
         public static string name {
             get {
                 return ResourceManager.GetString("name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Titre.
+        /// </summary>
+        public static string name_serie {
+            get {
+                return ResourceManager.GetString("name_serie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pochette.
+        /// </summary>
+        public static string photo_serie {
+            get {
+                return ResourceManager.GetString("photo_serie", resourceCulture);
             }
         }
         

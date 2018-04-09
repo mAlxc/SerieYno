@@ -8,10 +8,9 @@ using Validators;
 
 namespace SerieYnoModels.Models
 {
-    class SerieModel
-    {
-        [Table(name: "Series")]
-        public class Serie : ModelBase
+
+        [Table(name: "SerieModel")]
+        public class SerieModel : ModelBase
         {
 
             [Display(Name = "name_serie", ResourceType = typeof(Languages.Resources.Resource))]
@@ -27,5 +26,4 @@ namespace SerieYnoModels.Models
             [Display(Name = "photo_serie", ResourceType = typeof(Languages.Resources.Resource))]
             public string Photo_serie { get; set; }
         }
-    }
 }
