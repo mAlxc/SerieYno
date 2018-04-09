@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SerieYno.Models.ManageViewModels
+namespace SerieYnoModels.Models.ManageViewModels
 {
     public class ShowRecoveryCodesViewModel
     {

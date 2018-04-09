@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace SerieYno.Models.ManageViewModels
+namespace SerieYnoModels.Models.ManageViewModels
 {
     public class EnableAuthenticatorViewModel
     {

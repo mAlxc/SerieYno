@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SerieYno.Data;
-using SerieYno.Models;
 using SerieYno.Services;
+using SerieYnoModels.Models;
+using SerieYnoModels.Models.AccountViewModels;
 
 namespace SerieYno
 {

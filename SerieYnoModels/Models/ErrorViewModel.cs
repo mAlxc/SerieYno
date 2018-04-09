@@ -1,6 +1,6 @@
 using System;
 
-namespace SerieYno.Models
+namespace SerieYnoModels.Models
 {
     public class ErrorViewModel
     {

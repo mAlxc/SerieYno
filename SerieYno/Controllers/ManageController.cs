@@ -10,9 +10,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using SerieYno.Models;
-using SerieYno.Models.ManageViewModels;
+using SerieYnoModels.Models;
+using SerieYnoModels.Models.AccountViewModels;
 using SerieYno.Services;
+using SerieYnoModels.Models.ManageViewModels;
 
 namespace SerieYno.Controllers
 {

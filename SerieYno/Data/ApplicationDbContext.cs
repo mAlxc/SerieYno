@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SerieYno.Models;
-
+using SerieYnoModels.Models;
+using SerieYnoModels.Models.AccountViewModels;
 namespace SerieYno.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

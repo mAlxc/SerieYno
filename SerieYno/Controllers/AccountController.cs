@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
@@ -9,10 +7,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using SerieYno.Models;
-using SerieYno.Models.AccountViewModels;
 using SerieYno.Services;
+using SerieYnoModels.Models;
+using SerieYnoModels.Models.AccountViewModels;
 
 namespace SerieYno.Controllers
 {
