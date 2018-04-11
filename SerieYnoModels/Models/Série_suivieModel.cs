@@ -12,12 +12,11 @@ namespace SerieYnoModels.Models
         [Table(name: "Série_suivieModel")]
         public class Série_suivieModel : ModelBase
         {
-        [Key]
+
         [Display(Name = "ID_serie", ResourceType = typeof(Guid))]
         public Guid ID_serie{ get; set; }
         public virtual SerieModel Serie { get; set; }
 
-        [Key]
         [Display(Name = "ID_user", ResourceType = typeof(Guid))]
         public Guid ID_user { get; set; }
         public virtual ApplicationUser Utilisateur { get; set; }

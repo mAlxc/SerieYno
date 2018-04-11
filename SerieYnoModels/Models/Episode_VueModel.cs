@@ -12,12 +12,10 @@ namespace SerieYnoModels.Models
         [Table(name: "Episode_VueModel")]
         public class Episode_VueModel : ModelBase
         {
-        [Key]
         [Display(Name = "ID_ep", ResourceType = typeof(Guid))]
         public Guid ID_ep{ get; set; }
         public virtual EpisodeModel Episode { get; set; }
 
-        [Key]
         [Display(Name = "ID_user", ResourceType = typeof(Guid))]
         public Guid ID_user { get; set; }
         public virtual ApplicationUser Utilisateur { get; set; }

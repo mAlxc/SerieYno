@@ -13,8 +13,8 @@ namespace SerieYnoModels.Models
         public class SaisonModel : ModelBase
         {
 
-        [ForeignKey("ID")]
-        [Display(Name = "ID", ResourceType = typeof(Guid))]
+        [ForeignKey("ID_ep")]
+        [Display(Name = "ID_ep", ResourceType = typeof(Guid))]
         public Guid ID_ep{ get; set; }
         public virtual EpisodeModel Ep { get; set; }
 
