@@ -34,15 +34,17 @@ namespace SerieYnoModels.Models
 
         [Key]
         [Display(Name = "ID_ep", ResourceType = typeof(Guid))]
+        [ForeignKey("ID_ep")]
         public Guid ID_ep { get; set; }
         public virtual EpisodeModel Ep { get; set; }
-        [ForeignKey("ID_ep")]
+        
         
         [Key]
         [Display(Name = "ID_saison", ResourceType = typeof(Guid))]
         public Guid ID_saison { get; set; }
-        public virtual SaisonModel Saison { get; set; }
         [ForeignKey("ID_saison")]
+        public virtual SaisonModel Saison { get; set; }
+        
         
     }
 }

@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using SerieYno.Services;
 using SerieYnoModels.Models;
 using SerieYnoModels.Models.AccountViewModels;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SerieYno.Controllers
 {

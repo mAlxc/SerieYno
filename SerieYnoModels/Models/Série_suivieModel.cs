@@ -20,7 +20,7 @@ namespace SerieYnoModels.Models
         [Key]
         [Display(Name = "ID_user", ResourceType = typeof(Guid))]
         public Guid ID_user { get; set; }
-        public virtual User Utilisateur { get; set; }
+        public virtual ApplicationUser Utilisateur { get; set; }
 
         [Display(Name = "cod_suivie", ResourceType = typeof(int))]
         public int Cod_suivie { get; set; }

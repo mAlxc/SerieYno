@@ -16,12 +16,12 @@ namespace SerieYnoModels.Models
         [Key]
         [Display(Name = "ID_user1", ResourceType = typeof(Guid))]
         public Guid ID_user1 { get; set; }
-        public virtual User Utilisateur1 { get; set; }
+        public virtual ApplicationUser Utilisateur1 { get; set; }
 
         [Key]
         [Display(Name = "ID_user2", ResourceType = typeof(Guid))]
         public Guid ID_user2 { get; set; }
-        public virtual User Utilisateur2 { get; set; }
+        public virtual ApplicationUser Utilisateur2 { get; set; }
 
         [Display(Name = "cod_ami", ResourceType = typeof(int))]
         public int Cod_ami { get; set; }

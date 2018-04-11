@@ -12,6 +12,8 @@ using SerieYno.Data;
 using SerieYno.Services;
 using SerieYnoModels.Models;
 using SerieYnoModels.Models.AccountViewModels;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SerieYno
 {
@@ -33,6 +35,21 @@ namespace SerieYno
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            //
+            services.AddAuthentication()
+                .AddCookie(cfg => cfg.SlidingExpiration = true)
+                .AddJwtBearer(cfg =>
+                 {
+                     cfg.RequireHttpsMetadata = false;
+                     cfg.SaveToken = true;
+
+                     cfg.TokenValidationParameters = new TokenValidationParameters()
+                     {
+                         ValidIssuer = Configuration["Tokens:Issuer"],
+                         ValidAudience = Configuration["Tokens:Issuer"],
+                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+                     };
+                 });
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();

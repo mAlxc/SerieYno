@@ -12,11 +12,12 @@ namespace SerieYnoModels.Models
         [Table(name: "SaisonModel")]
         public class SaisonModel : ModelBase
         {
-        [Key]
-        [Display(Name = "ID_ep", ResourceType = typeof(Guid))]
+
+        [ForeignKey("ID")]
+        [Display(Name = "ID", ResourceType = typeof(Guid))]
         public Guid ID_ep{ get; set; }
         public virtual EpisodeModel Ep { get; set; }
-        [ForeignKey("ID_saison")]
+
 
         [Display(Name = "num_saison", ResourceType = typeof(int))]
         [Required(ErrorMessageResourceName = "required", ErrorMessageResourceType = typeof(int))]
