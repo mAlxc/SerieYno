@@ -32,15 +32,15 @@ namespace SerieYnoModels.Models
         [Display(Name = "num_max_saison", ResourceType = typeof(int))]
         public int Num_max_saison { get; set; }
 
-        [Display(Name = "ID_ep", ResourceType = typeof(Guid))]
-        [ForeignKey("ID_ep")]
+        [Display(Name = "ID", ResourceType = typeof(Guid))]
+        [ForeignKey("ID")]
         public Guid ID_ep { get; set; }
         public virtual EpisodeModel Ep { get; set; }
         
        
-        [Display(Name = "ID_saison", ResourceType = typeof(Guid))]
+        [Display(Name = "ID", ResourceType = typeof(Guid))]
         public Guid ID_saison { get; set; }
-        [ForeignKey("ID_saison")]
+        [ForeignKey("ID")]
         public virtual SaisonModel Saison { get; set; }
         
         
