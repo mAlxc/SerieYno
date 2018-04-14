@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SerieYnoModels.Models.SerieModel>
+﻿@model SerieYno.ViewsModels.SerieViewModels.FullViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -12,54 +12,79 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name_serie)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Photo_serie)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UpdatedAt)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DeletedAt)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Deleted)
-                </th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Photo</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name_serie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Photo_serie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeletedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Deleted)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.SerieModel)
+        {
+            string selectedRow = "";
+            if (item.ID == ViewBag.SerieId)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name_serie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Photo_serie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Num_max_ep)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Num_max_saison)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeletedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deleted)
+                </td>
+                <td>
+                <td>
+                    @Html.ActionLink("Select", "Index", new { id = item.ID }) |
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
+
 </table>
+
+@if (Model.SaisonModel != null)
+{
+    <h3>
+        Saisons
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+        </tr>
+        @foreach (var item in Model.SaisonModel)
+        {
+            <tr>
+                <td>
+                    @item.Num_saison
+                </td>
+                <td>
+                    @item.ID
+                </td>
+            </tr>
+        }
+    </table>
+}
+   

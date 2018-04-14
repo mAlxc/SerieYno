@@ -1,10 +1,10 @@
 ﻿@model SerieYnoModels.Models.SerieModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Details";
 }
 
-<h2>Index</h2>
+<h2>Details</h2>
 
 <div>
     <h4>SerieModel</h4>
@@ -27,6 +27,18 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Photo_serie)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_max_ep)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Num_max_ep)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_max_saison)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Num_max_saison)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.UpdatedAt)

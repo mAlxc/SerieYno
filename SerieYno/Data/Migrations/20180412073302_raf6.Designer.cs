@@ -11,8 +11,8 @@ using System;
 namespace SerieYno.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180409214130_SerieInit2")]
-    partial class SerieInit2
+    [Migration("20180412073302_raf6")]
+    partial class raf6
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -180,6 +180,119 @@ namespace SerieYno.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("SerieYnoModels.Models.Episode_VueModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Cod_vue");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<DateTime?>("DeletedAt");
+
+                    b.Property<Guid?>("EpisodeID");
+
+                    b.Property<Guid>("ID_ep");
+
+                    b.Property<Guid>("ID_user");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.Property<string>("UtilisateurId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("EpisodeID");
+
+                    b.HasIndex("UtilisateurId");
+
+                    b.ToTable("Episode_VueModel");
+                });
+
+            modelBuilder.Entity("SerieYnoModels.Models.EpisodeModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<DateTime?>("DeletedAt");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name_ep");
+
+                    b.Property<int>("Num_ep");
+
+                    b.Property<Guid>("SaisonId");
+
+                    b.Property<Guid?>("SaisonModelID");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("SaisonId");
+
+                    b.HasIndex("SaisonModelID");
+
+                    b.ToTable("EpisodeModel");
+                });
+
+            modelBuilder.Entity("SerieYnoModels.Models.SaisonModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<DateTime?>("DeletedAt");
+
+                    b.Property<int?>("Num_saison")
+                        .IsRequired();
+
+                    b.Property<Guid>("SerieId");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("SerieId");
+
+                    b.ToTable("SaisonModel");
+                });
+
+            modelBuilder.Entity("SerieYnoModels.Models.Serie_suivieModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Cod_suivie");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<DateTime?>("DeletedAt");
+
+                    b.Property<Guid>("ID_serie");
+
+                    b.Property<Guid>("ID_user");
+
+                    b.Property<Guid?>("SerieID");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.Property<string>("UtilisateurId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("SerieID");
+
+                    b.HasIndex("UtilisateurId");
+
+                    b.ToTable("Serie_suivieModel");
+                });
+
             modelBuilder.Entity("SerieYnoModels.Models.SerieModel", b =>
                 {
                     b.Property<Guid>("ID")
@@ -189,11 +302,25 @@ namespace SerieYno.Data.Migrations
 
                     b.Property<DateTime?>("DeletedAt");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1024);
+
+                    b.Property<string>("Name_serie")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Num_max_ep");
+
+                    b.Property<int>("Num_max_saison");
+
+                    b.Property<string>("Photo_serie");
+
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Serie");
+                    b.ToTable("SerieModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -239,6 +366,48 @@ namespace SerieYno.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SerieYnoModels.Models.Episode_VueModel", b =>
+                {
+                    b.HasOne("SerieYnoModels.Models.EpisodeModel", "Episode")
+                        .WithMany()
+                        .HasForeignKey("EpisodeID");
+
+                    b.HasOne("SerieYnoModels.Models.ApplicationUser", "Utilisateur")
+                        .WithMany()
+                        .HasForeignKey("UtilisateurId");
+                });
+
+            modelBuilder.Entity("SerieYnoModels.Models.EpisodeModel", b =>
+                {
+                    b.HasOne("SerieYnoModels.Models.SerieModel", "Saison")
+                        .WithMany()
+                        .HasForeignKey("SaisonId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SerieYnoModels.Models.SaisonModel")
+                        .WithMany("Episodes")
+                        .HasForeignKey("SaisonModelID");
+                });
+
+            modelBuilder.Entity("SerieYnoModels.Models.SaisonModel", b =>
+                {
+                    b.HasOne("SerieYnoModels.Models.SerieModel", "Serie")
+                        .WithMany("Saisons")
+                        .HasForeignKey("SerieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SerieYnoModels.Models.Serie_suivieModel", b =>
+                {
+                    b.HasOne("SerieYnoModels.Models.SerieModel", "Serie")
+                        .WithMany()
+                        .HasForeignKey("SerieID");
+
+                    b.HasOne("SerieYnoModels.Models.ApplicationUser", "Utilisateur")
+                        .WithMany()
+                        .HasForeignKey("UtilisateurId");
                 });
 #pragma warning restore 612, 618
         }

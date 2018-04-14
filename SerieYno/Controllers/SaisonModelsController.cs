@@ -7,45 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SerieYno.Data;
 using SerieYnoModels.Models;
-using SerieYno.ViewsModels;
-using SerieYno.ViewsModels.SerieViewModels;
 
 namespace SerieYno.Controllers
 {
-    public class SerieController : Controller
+    public class SaisonModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public SerieController(ApplicationDbContext context)
+        public SaisonModelsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Serie
-        public async Task<IActionResult> Index(Guid? id, Guid? saisonId)
+        // GET: SaisonModels
+        public async Task<IActionResult> Index()
         {
-            var viewModel = new FullViewModel();
-            viewModel.SerieModel = _context.SerieModel
-                .OrderBy(i => i.Name_serie);
-
-            if (id != null)
-            {
-                ViewBag.SerieId = id.Value;
-                viewModel.SaisonModel = viewModel.SerieModel.Where(
-                    i => i.ID == id.Value).Single().Saisons;
-            }
-
-            if (saisonId != null)
-            {
-                ViewBag.SaisonId = saisonId.Value;
-                viewModel.EpisodeModel = viewModel.SaisonModel.Where(
-                    x => x.ID == saisonId.Value).Single().Episodes;
-            }
-
-            return View(viewModel);
+            var applicationDbContext = _context.SaisonModel.Include(s => s.Serie);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Serie/Details/5
+        // GET: SaisonModels/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -53,40 +34,43 @@ namespace SerieYno.Controllers
                 return NotFound();
             }
 
-            var serieModel = await _context.Serie
+            var saisonModel = await _context.SaisonModel
+                .Include(s => s.Serie)
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (serieModel == null)
+            if (saisonModel == null)
             {
                 return NotFound();
             }
 
-            return View(serieModel);
+            return View(saisonModel);
         }
 
-        // GET: Serie/Create
+        // GET: SaisonModels/Create
         public IActionResult Create()
         {
+            ViewData["SerieId"] = new SelectList(_context.Serie, "ID", "Name_serie");
             return View();
         }
 
-        // POST: Serie/Create
+        // POST: SaisonModels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name_serie,Description,Photo_serie,Num_max_ep,Num_max_saison,ID,UpdatedAt,DeletedAt,Deleted")] SerieModel serieModel)
+        public async Task<IActionResult> Create([Bind("SerieId,Num_saison,ID,UpdatedAt,DeletedAt,Deleted")] SaisonModel saisonModel)
         {
             if (ModelState.IsValid)
             {
-                serieModel.ID = Guid.NewGuid();
-                _context.Add(serieModel);
+                saisonModel.ID = Guid.NewGuid();
+                _context.Add(saisonModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(serieModel);
+            ViewData["SerieId"] = new SelectList(_context.Serie, "ID", "Name_serie", saisonModel.SerieId);
+            return View(saisonModel);
         }
 
-        // GET: Serie/Edit/5
+        // GET: SaisonModels/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -94,22 +78,23 @@ namespace SerieYno.Controllers
                 return NotFound();
             }
 
-            var serieModel = await _context.Serie.SingleOrDefaultAsync(m => m.ID == id);
-            if (serieModel == null)
+            var saisonModel = await _context.SaisonModel.SingleOrDefaultAsync(m => m.ID == id);
+            if (saisonModel == null)
             {
                 return NotFound();
             }
-            return View(serieModel);
+            ViewData["SerieId"] = new SelectList(_context.Serie, "ID", "Name_serie", saisonModel.SerieId);
+            return View(saisonModel);
         }
 
-        // POST: Serie/Edit/5
+        // POST: SaisonModels/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name_serie,Description,Photo_serie,Num_max_ep,Num_max_saison,ID,UpdatedAt,DeletedAt,Deleted")] SerieModel serieModel)
+        public async Task<IActionResult> Edit(Guid id, [Bind("SerieId,Num_saison,ID,UpdatedAt,DeletedAt,Deleted")] SaisonModel saisonModel)
         {
-            if (id != serieModel.ID)
+            if (id != saisonModel.ID)
             {
                 return NotFound();
             }
@@ -118,12 +103,12 @@ namespace SerieYno.Controllers
             {
                 try
                 {
-                    _context.Update(serieModel);
+                    _context.Update(saisonModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SerieModelExists(serieModel.ID))
+                    if (!SaisonModelExists(saisonModel.ID))
                     {
                         return NotFound();
                     }
@@ -134,10 +119,11 @@ namespace SerieYno.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(serieModel);
+            ViewData["SerieId"] = new SelectList(_context.Serie, "ID", "Name_serie", saisonModel.SerieId);
+            return View(saisonModel);
         }
 
-        // GET: Serie/Delete/5
+        // GET: SaisonModels/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -145,30 +131,31 @@ namespace SerieYno.Controllers
                 return NotFound();
             }
 
-            var serieModel = await _context.Serie
+            var saisonModel = await _context.SaisonModel
+                .Include(s => s.Serie)
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (serieModel == null)
+            if (saisonModel == null)
             {
                 return NotFound();
             }
 
-            return View(serieModel);
+            return View(saisonModel);
         }
 
-        // POST: Serie/Delete/5
+        // POST: SaisonModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var serieModel = await _context.Serie.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Serie.Remove(serieModel);
+            var saisonModel = await _context.SaisonModel.SingleOrDefaultAsync(m => m.ID == id);
+            _context.SaisonModel.Remove(saisonModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SerieModelExists(Guid id)
+        private bool SaisonModelExists(Guid id)
         {
-            return _context.Serie.Any(e => e.ID == id);
+            return _context.SaisonModel.Any(e => e.ID == id);
         }
     }
 }

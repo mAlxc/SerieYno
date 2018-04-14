@@ -12,13 +12,17 @@ namespace SerieYnoModels.Models
         [Table(name: "EpisodeModel")]
         public class EpisodeModel : ModelBase
         {
-        [Display(Name = "num_ep", ResourceType = typeof(int))]
-        [Required(ErrorMessageResourceName = "required", ErrorMessageResourceType = typeof(int))]
-        [StringLength(100, ErrorMessage = "La saison doit avoir au moins 1 episode.")]
+        [Display(Name = "num_ep", ResourceType = typeof(Languages.Resources.Resource))]
+        [Required]
         public int Num_ep { get; set; }
 
         [Display(Name = "name_ep", ResourceType = typeof(Languages.Resources.Resource))]
         public string Name_ep { get; set; }
 
+        [Display(Name = "description", ResourceType = typeof(Languages.Resources.Resource))]
+        public string Description { get; set; }
+
+        public Guid SaisonId { get; set; }
+        public virtual SerieModel Saison { get; set; }
     }
 }

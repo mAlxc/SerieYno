@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using Validators;
 
-
-namespace SerieYnoModels.Models
+namespace SerieYnoModels.Models.SaisonsViewModels
 {
-
-    [Table(name: "SaisonModel")]
-    public class SaisonModel : ModelBase
+    class CreateSaisonViewModel
     {
-
-        public virtual ICollection<EpisodeModel> Episodes { get; set; }
-
+        [Required]
         public Guid SerieId { get; set; }
-        public virtual SerieModel Serie {get;set;}
 
         [Display(Name = "num_saison", ResourceType = typeof(Languages.Resources.Resource))]
         [Required]
+        [Range(1, 50)]
         public int? Num_saison { get; set; }
     }
 }

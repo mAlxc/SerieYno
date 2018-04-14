@@ -11,9 +11,10 @@ using System;
 namespace SerieYno.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180411230339_raf")]
+    partial class raf
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,23 +219,14 @@ namespace SerieYno.Data.Migrations
 
                     b.Property<DateTime?>("DeletedAt");
 
-                    b.Property<string>("Description");
-
                     b.Property<string>("Name_ep");
 
-                    b.Property<int>("Num_ep");
-
-                    b.Property<Guid>("SaisonId");
-
-                    b.Property<Guid?>("SaisonModelID");
+                    b.Property<int>("Num_ep")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("SaisonId");
-
-                    b.HasIndex("SaisonModelID");
 
                     b.ToTable("EpisodeModel");
                 });
@@ -248,16 +240,18 @@ namespace SerieYno.Data.Migrations
 
                     b.Property<DateTime?>("DeletedAt");
 
-                    b.Property<int?>("Num_saison")
-                        .IsRequired();
+                    b.Property<Guid?>("EpID");
 
-                    b.Property<Guid>("SerieId");
+                    b.Property<Guid>("ID_ep");
+
+                    b.Property<int>("Num_saison")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("SerieId");
+                    b.HasIndex("EpID");
 
                     b.ToTable("SaisonModel");
                 });
@@ -304,6 +298,8 @@ namespace SerieYno.Data.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1024);
+
+                    b.Property<Guid>("ID_saison");
 
                     b.Property<string>("Name_serie")
                         .IsRequired()
@@ -378,24 +374,11 @@ namespace SerieYno.Data.Migrations
                         .HasForeignKey("UtilisateurId");
                 });
 
-            modelBuilder.Entity("SerieYnoModels.Models.EpisodeModel", b =>
-                {
-                    b.HasOne("SerieYnoModels.Models.SerieModel", "Saison")
-                        .WithMany()
-                        .HasForeignKey("SaisonId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SerieYnoModels.Models.SaisonModel")
-                        .WithMany("Episodes")
-                        .HasForeignKey("SaisonModelID");
-                });
-
             modelBuilder.Entity("SerieYnoModels.Models.SaisonModel", b =>
                 {
-                    b.HasOne("SerieYnoModels.Models.SerieModel", "Serie")
-                        .WithMany("Saisons")
-                        .HasForeignKey("SerieId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("SerieYnoModels.Models.EpisodeModel", "Ep")
+                        .WithMany()
+                        .HasForeignKey("EpID");
                 });
 
             modelBuilder.Entity("SerieYnoModels.Models.Serie_suivieModel", b =>
@@ -407,6 +390,14 @@ namespace SerieYno.Data.Migrations
                     b.HasOne("SerieYnoModels.Models.ApplicationUser", "Utilisateur")
                         .WithMany()
                         .HasForeignKey("UtilisateurId");
+                });
+
+            modelBuilder.Entity("SerieYnoModels.Models.SerieModel", b =>
+                {
+                    b.HasOne("SerieYnoModels.Models.SaisonModel", "Saison")
+                        .WithMany()
+                        .HasForeignKey("ID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

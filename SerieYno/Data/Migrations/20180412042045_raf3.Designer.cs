@@ -11,9 +11,10 @@ using System;
 namespace SerieYno.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180412042045_raf3")]
+    partial class raf3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,17 +219,18 @@ namespace SerieYno.Data.Migrations
 
                     b.Property<DateTime?>("DeletedAt");
 
-                    b.Property<string>("Description");
-
                     b.Property<string>("Name_ep");
 
-                    b.Property<int>("Num_ep");
+                    b.Property<int>("Num_ep")
+                        .HasMaxLength(1);
 
                     b.Property<Guid>("SaisonId");
 
                     b.Property<Guid?>("SaisonModelID");
 
                     b.Property<DateTime>("UpdatedAt");
+
+                    b.Property<string>("description");
 
                     b.HasKey("ID");
 

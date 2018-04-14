@@ -40,9 +40,24 @@
                             <li><a asp-action="create" asp-controller="serie">Créer</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Saisons <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-action="index" asp-controller="SaisonModels">Lister</a></li>
+                            <li><a asp-action="create" asp-controller="SaisonModels">Créer</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-action="index" asp-controller="EpisodeModels">Lister</a></li>
+                            <li><a asp-action="create" asp-controller="EpisodeModels">Créer</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
+
         </div>
     </nav>
     <div class="container body-content">

@@ -61,6 +61,24 @@ namespace Languages.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Code ami.
+        /// </summary>
+        public static string cod_ami {
+            get {
+                return ResourceManager.GetString("cod_ami", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Code de suivi.
+        /// </summary>
+        public static string cod_suivie {
+            get {
+                return ResourceManager.GetString("cod_suivie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à description.
         /// </summary>
         public static string description {
@@ -79,6 +97,60 @@ namespace Languages.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à ID.
+        /// </summary>
+        public static string ID {
+            get {
+                return ResourceManager.GetString("ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Id episode.
+        /// </summary>
+        public static string ID_ep {
+            get {
+                return ResourceManager.GetString("ID_ep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Id de la serie serie.
+        /// </summary>
+        public static string ID_serie {
+            get {
+                return ResourceManager.GetString("ID_serie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Id Utilisateur.
+        /// </summary>
+        public static string ID_user {
+            get {
+                return ResourceManager.GetString("ID_user", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Id Utilisateur.
+        /// </summary>
+        public static string ID_user1 {
+            get {
+                return ResourceManager.GetString("ID_user1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Id Utilisateur.
+        /// </summary>
+        public static string ID_user2 {
+            get {
+                return ResourceManager.GetString("ID_user2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nom.
         /// </summary>
         public static string name {
@@ -88,11 +160,56 @@ namespace Languages.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom de l&apos;episode.
+        /// </summary>
+        public static string name_ep {
+            get {
+                return ResourceManager.GetString("name_ep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Titre.
         /// </summary>
         public static string name_serie {
             get {
                 return ResourceManager.GetString("name_serie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Numero de l&apos;episode.
+        /// </summary>
+        public static string num_ep {
+            get {
+                return ResourceManager.GetString("num_ep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nombre d&apos;espisodes maximum.
+        /// </summary>
+        public static string num_max_ep {
+            get {
+                return ResourceManager.GetString("num_max_ep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nombre maximum de saisons.
+        /// </summary>
+        public static string num_max_saison {
+            get {
+                return ResourceManager.GetString("num_max_saison", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Numero de la saison.
+        /// </summary>
+        public static string num_saison {
+            get {
+                return ResourceManager.GetString("num_saison", resourceCulture);
             }
         }
         

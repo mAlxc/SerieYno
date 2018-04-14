@@ -28,5 +28,10 @@ namespace SerieYno.Data
     }
 
         public DbSet<SerieYnoModels.Models.ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<SerieYnoModels.Models.EpisodeModel> EpisodeModel { get; set; }
+        public DbSet<SerieYnoModels.Models.SaisonModel> SaisonModel { get; set; }
+        public DbSet<SerieYnoModels.Models.SerieModel> SerieModel { get; set; }
+        public DbSet<SerieYnoModels.Models.Episode_VueModel> Episode_VueModel { get; set; }
+        public DbSet<SerieYnoModels.Models.Serie_suivieModel> Serie_suivieModel { get; set; }
     }
 }

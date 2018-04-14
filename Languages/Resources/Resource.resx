@@ -123,11 +123,23 @@
   <data name="firstname" xml:space="preserve">
     <value>Prénom</value>
   </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Nom</value>
   </data>
+  <data name="name_ep" xml:space="preserve">
+    <value>Nom de l'episode</value>
+  </data>
   <data name="name_serie" xml:space="preserve">
     <value>Titre</value>
+  </data>
+  <data name="num_max_ep" xml:space="preserve">
+    <value>Nombre d'espisodes maximum</value>
+  </data>
+  <data name="num_max_saison" xml:space="preserve">
+    <value>Nombre maximum de saisons</value>
   </data>
   <data name="photo_serie" xml:space="preserve">
     <value>Pochette</value>
@@ -137,5 +149,32 @@
   </data>
   <data name="required_name" xml:space="preserve">
     <value>Le champ nom est obligatoire</value>
+  </data>
+  <data name="cod_ami" xml:space="preserve">
+    <value>Code ami</value>
+  </data>
+  <data name="cod_suivie" xml:space="preserve">
+    <value>Code de suivi</value>
+  </data>
+  <data name="ID_serie" xml:space="preserve">
+    <value>Id de la serie serie</value>
+  </data>
+  <data name="ID_user" xml:space="preserve">
+    <value>Id Utilisateur</value>
+  </data>
+  <data name="ID_user1" xml:space="preserve">
+    <value>Id Utilisateur</value>
+  </data>
+  <data name="ID_user2" xml:space="preserve">
+    <value>Id Utilisateur</value>
+  </data>
+  <data name="num_ep" xml:space="preserve">
+    <value>Numero de l'episode</value>
+  </data>
+  <data name="num_saison" xml:space="preserve">
+    <value>Numero de la saison</value>
+  </data>
+  <data name="ID_ep" xml:space="preserve">
+    <value>Id episode</value>
   </data>
 </root>

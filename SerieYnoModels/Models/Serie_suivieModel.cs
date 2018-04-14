@@ -9,19 +9,19 @@ using Validators;
 namespace SerieYnoModels.Models
 {
 
-        [Table(name: "Série_suivieModel")]
-        public class Série_suivieModel : ModelBase
+        [Table(name: "Serie_suivieModel")]
+        public class Serie_suivieModel : ModelBase
         {
 
-        [Display(Name = "ID_serie", ResourceType = typeof(Guid))]
+        [Display(Name = "ID_serie", ResourceType = typeof(Languages.Resources.Resource))]
         public Guid ID_serie{ get; set; }
         public virtual SerieModel Serie { get; set; }
 
-        [Display(Name = "ID_user", ResourceType = typeof(Guid))]
+        [Display(Name = "ID_user", ResourceType = typeof(Languages.Resources.Resource))]
         public Guid ID_user { get; set; }
         public virtual ApplicationUser Utilisateur { get; set; }
 
-        [Display(Name = "cod_suivie", ResourceType = typeof(int))]
+        [Display(Name = "cod_suivie", ResourceType = typeof(Languages.Resources.Resource))]
         public int Cod_suivie { get; set; }
 
     }

@@ -26,23 +26,13 @@ namespace SerieYnoModels.Models
         [Display(Name = "photo_serie", ResourceType = typeof(Languages.Resources.Resource))]
         public string Photo_serie { get; set; }
 
-        [Display(Name = "num_max_ep", ResourceType = typeof(int))]
+        [Display(Name = "num_max_ep", ResourceType = typeof(Languages.Resources.Resource))]
         public int Num_max_ep { get; set; }
 
-        [Display(Name = "num_max_saison", ResourceType = typeof(int))]
+        [Display(Name = "num_max_saison", ResourceType = typeof(Languages.Resources.Resource))]
         public int Num_max_saison { get; set; }
 
-        [Display(Name = "ID", ResourceType = typeof(Guid))]
-        [ForeignKey("ID")]
-        public Guid ID_ep { get; set; }
-        public virtual EpisodeModel Ep { get; set; }
-        
-       
-        [Display(Name = "ID", ResourceType = typeof(Guid))]
-        public Guid ID_saison { get; set; }
-        [ForeignKey("ID")]
-        public virtual SaisonModel Saison { get; set; }
-        
+        public virtual ICollection<SaisonModel> Saisons { get; set; }
         
     }
 }
